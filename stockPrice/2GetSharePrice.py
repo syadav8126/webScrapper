@@ -1,7 +1,7 @@
 import pandas as pd
 import yfinance as yf
 from yahoofinancials import YahooFinancials
-from allFunction import *
+from commonFunctionFile import *
 
 
 def PRINT(label):
@@ -42,7 +42,7 @@ def getNPlot():
 	tsla_df['Close'].plot(title="TSLA's stock price")
 
 TICKER_FILE='samplelist.csv'
-TICKER_FILE='listTicker.csv'
+TICKER_FILE='allIndianTicker.csv'
 
 symbols = f_TICKER(TICKER_FILE)
 a_dict={}

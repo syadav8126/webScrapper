@@ -1,9 +1,9 @@
-from allFunction import *
+from commonFunctionFile import *
 import csv
 
 data=pd.DataFrame()
 a_dict={}
-TICKER_FILE='listTicker.csv'
+TICKER_FILE='allIndianTicker.csv'
 start = datetime.datetime(2020,12,31)
 end   = datetime.datetime(2020,12,31)
 
