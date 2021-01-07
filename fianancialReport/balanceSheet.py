@@ -4,7 +4,7 @@ from lxml import html
 import requests
 import numpy as np
 import pandas as pd
-from allFunction import *
+from commonFunctionFile import *
 
 def get_page(url):
     # Set up the request headers that we're going to use, to simulate
@@ -114,16 +114,9 @@ def writeToExcel(df):
 	writer.save()
 
 
-TICKER_FILE='listTicker.csv'
-symbols = f_TICKER(TICKER_FILE)
 a_dict={}
-for i in range(len(symbols)):
-	try:
-		df_com = scrape(symbols.SYMBOL[i])
-		a_dict[symbols.SYMBOL[i]] = 1
-	except:
-		print('ERROR')	
-		a_dict[symbols.SYMBOL[i]] = 0
+df_com = scrape('ACC')
+print(df_com)
 
 
 a_file = open("financialresult.csv", "w")

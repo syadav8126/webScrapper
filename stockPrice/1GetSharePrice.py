@@ -1,5 +1,4 @@
 from commonFunctionFile import *
-import csv
 
 data=pd.DataFrame()
 a_dict={}
@@ -7,20 +6,31 @@ TICKER_FILE='allIndianTicker.csv'
 start = datetime.datetime(2020,12,31)
 end   = datetime.datetime(2020,12,31)
 
-ticker = f_TICKER(TICKER_FILE)
-for i in range(len(ticker)):
-	frame = f_DATA(ticker.SYMBOL[i],start, end)
-	name = ticker.SYMBOL[i]
+def multi_symbol(TICKER_FILE):
+	ticker = f_TICKER(TICKER_FILE)
+	for i in range(len(ticker)):
+		frame = f_DATA(ticker.SYMBOL[i],start, end)
+		name = ticker.SYMBOL[i]
+		if(frame.empty):
+			print(ticker.SYMBOL[i],"=0")
+			a_dict[ticker.SYMBOL[i]] = 0
+		else:
+			print(ticker.SYMBOL[i],"=1")
+			a_dict[ticker.SYMBOL[i]] = 1
+
+def single_symbol(symbol):
+	frame = f_DATA(symbol, start, end)
 	if(frame.empty):
-		print(ticker.SYMBOL[i],"=0")
-		a_dict[ticker.SYMBOL[i]] = 0
+		print(symbol,"= 0")
 	else:
-		print(ticker.SYMBOL[i],"=1")
-		a_dict[ticker.SYMBOL[i]] = 1
+		print(symbol,"= 1")
+	
+def f_WRITEtoFILE(saveinFile, a_dict):
+	a_file = open(saveinFile, "w")
+	writer = csv.writer(a_file)
+	for key, value in a_dict.items():
+		writer.writerow([key, value])
+	a_file.close()
 
-a_file = open("result.csv", "w")
-writer = csv.writer(a_file)
-for key, value in a_dict.items():
-    writer.writerow([key, value])
-a_file.close()
-
+symbol='BURGERKING'
+single_symbol(symbol)
