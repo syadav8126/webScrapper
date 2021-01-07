@@ -1,23 +1,12 @@
 from commonFunctionFile import *
 from nsepy.symbols import *
+from getlinks import *
 
 data=pd.DataFrame()
 a_dict={}
 TICKER_FILE='allIndianTicker.csv'
-start = datetime.datetime(1970,12,31)
+start = datetime.datetime(2020,12,30)
 end   = datetime.datetime(2020,12,31)
-
-def multi_symbol(TICKER_FILE):
-	ticker = f_TICKER(TICKER_FILE)
-	for i in range(len(ticker)):
-		frame = f_DATA(ticker.SYMBOL[i],start, end)
-		name = ticker.SYMBOL[i]
-		if(frame.empty):
-			print(ticker.SYMBOL[i],"=0")
-			a_dict[ticker.SYMBOL[i]] = 0
-		else:
-			print(ticker.SYMBOL[i],"=1")
-			a_dict[ticker.SYMBOL[i]] = 1
 
 def single_symbol(symbol):
 	frame = f_DATA(symbol, start, end)
@@ -34,6 +23,11 @@ def f_WRITEtoFILE(saveinFile, a_dict):
 		writer.writerow([key, value])
 	a_file.close()
 
-symbol='SBIN'
-this = single_symbol(symbol)
-CUMULATIVE_RETURN(this)
+symbol='ACC'
+#this = single_symbol(symbol)
+pd = links()
+for p in pd:
+	lok = p.find(symbol.lower())
+	if (lok>0):
+		print("got",symbol,"in",p,"at location",lok)
+#print(pd.loc[lok,:])
