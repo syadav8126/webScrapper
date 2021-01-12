@@ -1,0 +1,15 @@
+
+roce = total return on total capital (equity + debt)
+roe  = total return on equity only
+if debt=0 check roe
+else check roce
+
+(dividend is given from Total Reserves)
+if dividend is high roe will automaticall be high.
+
+
+
+
+total equity = Share Capital  + Total Reserves
+roe = Net Profit(profit after tax)/(total equity)
+roce  operating profit / (equity + Borrowings)
