@@ -1,0 +1,56 @@
+0
+"       Date  Promoter %  Pledge %
+0  Dec 2020       66.13         0
+1  Sep 2020       66.13         0
+2  Jun 2020       66.13         0
+3  Mar 2020       66.13         0
+4  Dec 2019       69.05         0"
+"          PARTICULARS  Sep 2019  Dec 2019  Mar 2020  Jun 2020  Sep 2020  Unnamed: 6
+0           Net Sales    132.63    188.96    329.00    160.84    121.69         NaN
+1   Total Expenditure    241.50    193.42    428.01    196.37    194.05         NaN
+2    Operating Profit   -108.87     -4.46    -99.01    -35.53    -72.36         NaN
+3        Other Income    180.00    400.65  10897.48     52.32     87.57         NaN
+4            Interest      1.97      1.23      0.67      0.35      0.51         NaN
+5        Depreciation      4.17      4.29     41.69      4.55      4.32         NaN
+6   Exceptional Items      0.00      0.00      0.00      0.00      0.00         NaN
+7   Profit Before Tax     64.99    390.67  10756.11     11.89     10.38         NaN
+8                 Tax    -42.32    -68.02    124.46      0.00     -9.85         NaN
+9    Profit After Tax    107.31    458.69  10631.65     11.89     20.23         NaN
+10  Adjusted EPS (Rs)      0.02      0.07      1.73      0.00      0.00         NaN"
+"           PARTICULARS  Mar 2016  Mar 2017  Mar 2018  Mar 2019  Mar 2020
+0            Net Sales    203.34    398.09   1025.86   1043.83    954.82
+1    Total Expenditure    711.65   1029.69    969.08    988.58   1162.24
+2     Operating Profit   -508.31   -631.60     56.78     55.25   -207.42
+3         Other Income  17405.26  15278.24   9292.95  10551.46  11566.33
+4             Interest    112.34    118.89     16.76     18.04      5.26
+5         Depreciation     16.41     17.52     18.14     26.25     54.39
+6    Exceptional Items      0.00      0.00      0.00      0.00      0.00
+7    Profit Before Tax  16768.20  14510.23   9314.83  10562.42  11299.26
+8                  Tax    175.20     11.14     21.41     92.75     18.38
+9           Net Profit  16593.00  14499.09   9293.42  10469.67  11280.88
+10  Adjusted EPS (Rs.)     26.27     23.36     14.97     16.99     18.31"
+"               Particulars  Mar 2016  Mar 2017  Mar 2018  Mar 2019  Mar 2020
+0   Equity and Liabilities       NaN       NaN       NaN       NaN       NaN
+1            Share Capital   6316.36   6207.41   6207.41   6162.73   6162.73
+2           Total Reserves   9729.45   7710.03   6487.30   7834.66  10650.57
+3               Borrowings      0.00      0.00      0.00      0.00      0.00
+4    Other N/C liabilities   3350.38   3662.49   3939.00   4311.29   4915.43
+5      Current liabilities   1982.57   1305.47   1831.21    749.60    688.05
+6        Total Liabilities  21378.76  18885.40  18464.92  19058.28  22416.78
+7                   Assets       NaN       NaN       NaN       NaN       NaN
+8                Net Block    317.82    306.44    316.88    300.75    310.91
+9              Capital WIP     13.13     13.52    119.00    142.63    128.33
+10             Investments  11416.51  11529.07  12137.39  12515.16  12232.59
+11        Loans & Advances    140.74    102.48     66.99     51.27     41.54
+12        Other N/C Assets   3095.40   3312.90   3672.18   4068.37   4407.73
+13          Current Assets   6395.16   3620.99   2152.48   1980.10   5295.68
+14            Total Assets  21378.76  18885.40  18464.92  19058.28  22416.78"
+"               PARTICULARS  Mar 2016  Mar 2017  Mar 2018  Mar 2019  Mar 2020  Unnamed: 6  Unnamed: 7  Unnamed: 8
+0        Profit Before Tax  16768.20  14510.23   9314.83  10562.42  11299.26         NaN         NaN         NaN
+1               Adjustment -16840.44 -14778.38  -9223.21 -10479.62 -11470.99         NaN         NaN         NaN
+2  Working Capital Changes   -287.71   -299.74    287.94   -865.20  -2394.08         NaN         NaN         NaN
+3                 Tax Paid   -422.57   -176.20    -77.25   -150.83    -74.64         NaN         NaN         NaN
+4      Operating Cash Flow   -782.52   -744.09    302.31   -933.23  -2640.45         NaN         NaN         NaN
+5      Investing Cash Flow  18340.45  18867.30   8207.45   9623.22   9497.87         NaN         NaN         NaN
+6      Financing Cash Flow -17381.26 -17674.32  -9084.68  -8781.26  -6879.61         NaN         NaN         NaN
+7            Net Cash Flow    176.67    448.89   -574.92    -91.27    -22.19         NaN         NaN         NaN"

@@ -12,12 +12,10 @@ end   = datetime.datetime(2020,12,31)
 def f_DATA(ticker, start, end):
 	
 	try:
-		print("tring....")
 		data = get_history(ticker, start, end)
 	except:
 		data= pd.DataFrame()
 
-	print(type(data))
 	return data
 
 

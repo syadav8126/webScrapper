@@ -1,6 +1,8 @@
 from commonFunctionFile import *
 from nsepy.symbols import *
-from getlinks import *
+from links import *
+import csv
+from financial import *
 
 data=pd.DataFrame()
 a_dict={}
@@ -23,11 +25,38 @@ def f_WRITEtoFILE(saveinFile, a_dict):
 		writer.writerow([key, value])
 	a_file.close()
 
-symbol='ACC'
-#this = single_symbol(symbol)
-pd = links()
-for p in pd:
-	lok = p.find(symbol.lower())
-	if (lok>0):
-		print("got",symbol,"in",p,"at location",lok)
-#print(pd.loc[lok,:])
+def linkToSymbolTickerFile():
+	pass
+def nameOfCompany(fl):
+	names = pd.read_csv(fl)
+	names = names['NAME OF COMPANY']
+	for name in names:
+		print(":",name)
+def getSymbol(TICKER_FILE):
+	sym_name = f_TICKER(TICKER_FILE)
+	sym = sym_name['SYMBOL']
+	name = sym_name['NAME OF COMPANY']
+	for s in range(len(sym)):
+		print(sym[s])
+		print(name[s])
+def search():
+	sym_n = f_TICKER(TICKER_FILE)
+	sym  = sym_n['SYMBOL']
+	name = sym_n['NAME OF COMPANY']
+	#sym=["ABAN","ABAN"]
+	#name=["Aban Offshore Limited","Aban Offshore Limited"]
+	for s in range(len(sym)):
+		nameSecondWord = name[s].split()[1]
+		nameSecondWord = nameSecondWord.lower()
+		#print("nameSecondWord",nameSecondWord)
+		with open("symbollink.csv") as o:
+			for line in o:
+				if sym[s] in line:
+					if nameSecondWord in line:
+						with open('precisesymbollink.csv','a', encoding='utf-8') as fl:
+							print(sym[s],nameSecondWord,line)
+							fl.write(str(line))
+
+def callCrappy():
+	process.crawl(MySpider,time_frame='frequency=3')
+	process.start()
