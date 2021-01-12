@@ -67,6 +67,8 @@ def roe(bs, pnl):
 		
 def getdataFinology(symbol):
 	DATA=spiderController(symbol, mode=mode)
+	print(DATA)
+	return
 	quaterly = pd.DataFrame(DATA[1])
 	pnl = pd.DataFrame(DATA[2])
 	balance_sheet = pd.DataFrame(DATA[3])

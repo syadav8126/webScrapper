@@ -79,4 +79,3 @@ def spiderController(SYMBOL, mode='C'):
 
 if __name__ == "__main__":
 	data=spiderController('COALINDIA')
-	print(data[0])

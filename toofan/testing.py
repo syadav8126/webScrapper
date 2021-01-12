@@ -1,29 +1,28 @@
 # -*- coding: utf-8 -*-
 import scrapy
+import csv
 import json
 import pandas as pd
 from scrapy.crawler import CrawlerProcess
 from scrapy.crawler import Crawler
 from pandas import DataFrame
+import io
 
+OUTPUT=[]
 class MySpider(scrapy.Spider):
 	name = 'ntschools'
-	start_urls = ['https://www.moneycontrol.com/india/stockpricequote/banks-public-sector/statebankindia/SBI']
+	start_urls = ['https://ticker.finology.in/company/COALINDIA']
 
 	headers = {
-		":authority": "www.moneycontrol.com",
-		":method": "GET",
-		":path" : "/mc/widget/mcfinancials/getFinancialData?classic=true&referenceId=income&requestType=C&scId=SBI&frequency=3",
-		":scheme": "https",
-		"accept": "text/html, */*; q=0.01",
+		"accept": "application/json, text/javascript, */*; q=0.01",
 		"accept-encoding": "gzip, deflate, br",
-		"accept-language": "en-US,en;q=0.9",
-		"cookie": "A18ID=1610008424074.172164; _gcl_au=1.1.403021126.1610008424; _gid=GA1.2.1376170904.1610008432; _fbp=fb.1.1610008443020.310133732; _ga_4S48PBY299=GS1.1.1610008424.1.1.1610008474.0; _cb_ls=1; _cb=D3uI4UBv85_hCkNr7b; _chartbeat2=.1610008486968.1610008486968.1.DKBjdRD7utJf3eBXjCQtXrSLfLF4.1; _cb_svref=null; _ga=GA1.2.1669516111.1610008428; PHPSESSID=s9d434u492d287s5cdm64g77r4; _gat=1; __gads=ID=e21f4d1be11d1008-2286975396c500da:T=1610008596:RT=1610008596:S=ALNI_MaWGSPATQEqUDunZEye_yMs2_W5yw; GED_PLAYLIST_ACTIVITY=W3sidSI6IndrMXUiLCJ0c2wiOjE2MTAwMDg2MTgsIm52IjowLCJ1cHQiOjE2MTAwMDg0OTgsImx0IjoxNjEwMDA4NjEzfV0.; _chartbeat5=127,9308,%2Findia%2Fstockpricequote%2Fbanks-public-sector%2Fstatebankindia%2FSBI,https%3A%2F%2Fwww.moneycontrol.com%2Findia%2Fstockpricequote%2Fbanks-public-sector%2Fstatebankindia%2FSBI%23standalone,D3uZyYC1eqgKB91P6-GwTcH27lb,,c,CD2y0ID4rpzoIVj_dCWiselDBtExR,moneycontrol.com,::20,9337,%2Findia%2Fstockpricequote%2Fbanks-public-sector%2Fstatebankindia%2FSBI,https%3A%2F%2Fwww.moneycontrol.com%2Findia%2Fstockpricequote%2Fbanks-public-sector%2Fstatebankindia%2FSBI%23consolidated,D94ju4HEaErK97XKBy4uNrEyosc,,c,DPSJu4CmdLbkCrUXobD9mOVWBDjC5O,moneycontrol.com,::113,9405,%2Findia%2Fstockpricequote%2Fbanks-public-sector%2Fstatebankindia%2FSBI,https%3A%2F%2Fwww.moneycontrol.com%2Findia%2Fstockpricequote%2Fbanks-public-sector%2Fstatebankindia%2FSBI%23income_statement,BVzAYDDCl4SPBc-xJyDnHui4Cj2YdM,,c,BpL24-DwedD3BzoD_VCRvYcTB6SdLl,moneycontrol.com",
-		"dnt": "1",
-		"referer": "https://www.moneycontrol.com/india/stockpricequote/banks-public-sector/statebankindia/SBI",
+		"cookie": "ASP.NET_SessionId=m11vkz5l0t3wx4apdhjh4v4b; _ga=GA1.2.1056050435.1610270634; _gid=GA1.2.733890492.1610270634; _gat_gtag_UA_136614031_6=1; _fbp=fb.1.1610270633963.365948770",
+		"referer": "https://ticker.finology.in/company/COALINDIA",
 		"sec-fetch-dest": "empty",
 		"sec-fetch-mode": "cors",
 		"sec-fetch-site": "same-origin",
+		"accept-language": "en-US,en;q=0.9",
+		"dnt": "1",
 		"user-agent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/87.0.4280.88 Safari/537.36",
 		"x-requested-with": "XMLHttpRequest"
 	}
@@ -31,25 +30,51 @@ class MySpider(scrapy.Spider):
 	def __init__(self, *args, **kwargs):
 
 		super(MySpider, self).__init__(*args, **kwargs)
+		self.code    = kwargs.get('code')
 			
 	def parse(self, response, *args, **kwargs):
 
-		url = 'https://www.moneycontrol.com/financials/coalindia/profit-lossVI/CI11#CI11'
+		#url = 'https://ticker.finology.in/GetPrices.ashx?v=3.1&fincode=219300&stk=BSE&type=Y&count=1'
+		#url = 'https://ticker.finology.in/GetValuation.ashx?v=3.1&fincode=219300&exc=BSE&top=365'
+		base_url = 'https://ticker.finology.in/Peers.ashx?v=3.1&fincode='
+		code= str(self.code)
+		url = base_url + code + '&Mode=S'
+		print("====================================================================")
+		print(url)
+		#url = 'https://ticker.finology.in/GetShares.ashx?v=3.1&fincode=219300'
+		#url = 'https://ticker.finology.in/GetCorpAction.ashx?v=3.1&fincode=219300'
+		#url = 'https://ticker.finology.in/News.ashx?v=3.1&fincode=219300'
+		#url = 'https://ticker.finology.in/GetCompanybrief.ashx?v=3.1&fincode=219300'
 		request = scrapy.Request(url, callback=self.parse_api, headers=self.headers)
 		yield request
 
 	def parse_api(self, response):
 		raw_data = response.body
-		raw_data = raw_data.decode('utf-8')
-		data = pd.read_html(raw_data)
-		frame = DataFrame(data)
-		frame.to_csv(r'scrapycsv',index = False, header=True)
+		if not raw_data:
+			return
+		print(raw_data)
+		data = raw_data.decode('UTF-8')
+		ls = json.loads(data)
+		for l in range(len(ls)):
+			print(ls[l])
+			sym = ls[l]['SYMBOL']
+			fincode = ls[l]['FINCODE']
+			with open('fincode.csv','a') as fl:
+				writer = csv.writer(fl)
+				writer.writerow([sym,fincode])
 
-process = CrawlerProcess({
-	"user-agent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/87.0.4280.88 Safari/537.36"
-})
 
-#process.crawl(MySpider,company_name='SBI',time_frame='frequency=3')
-process.crawl(MySpider)
-process.start()
+def spiderController():
+	process = CrawlerProcess({
+		"user-agent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/87.0.4280.88 Safari/537.36"
+	})
+	
+	for i in range(100000, 200000):
+		process.crawl(MySpider, code=i)
+
+	process.start()
+
+if __name__ == "__main__":
+	spiderController()
+
 
