@@ -1,0 +1,10 @@
+import csv
+from collections import OrderedDict
+
+fo = open('backfincode.csv')
+f=fo.read()
+fk,fv = (f.split(','))
+print(fk)
+dic= dict(zip(fk,fv))
+dict1 = OrderedDict(sorted(dic.items())) 
+print(dict1) 

@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 import scrapy
+import sys
 import csv
 import json
 import pandas as pd
@@ -7,6 +8,9 @@ from scrapy.crawler import CrawlerProcess
 from scrapy.crawler import Crawler
 from pandas import DataFrame
 import io
+from twisted.internet import reactor
+from scrapy.utils.project import get_project_settings
+from sort import sort
 
 OUTPUT=[]
 class MySpider(scrapy.Spider):
@@ -64,17 +68,34 @@ class MySpider(scrapy.Spider):
 				writer.writerow([sym,fincode])
 
 
-def spiderController():
+def spiderController(start, end):
 	process = CrawlerProcess({
 		"user-agent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/87.0.4280.88 Safari/537.36"
 	})
 	
-	for i in range(100000, 200000):
+	for i in range(start, end):
 		process.crawl(MySpider, code=i)
 
 	process.start()
-
-if __name__ == "__main__":
-	spiderController()
+	process.stop()
 
 
+def duplicate():
+	lines_seen = set() # holds lines already seen
+	with open("fincode.csv", "r+") as f:
+		d = f.readlines()
+		f.seek(0)
+		for i in d:
+			if i not in lines_seen:
+				f.write(i)
+				lines_seen.add(i)
+		f.truncate()
+
+if __name__ == '__main__':
+	#s = int(sys.argv[1])
+	#e = int(sys.argv[2])
+	s=132750
+	e=132800
+	spiderController(s,e)
+	duplicate()
+	sort()
