@@ -6,8 +6,8 @@ import subprocess
 
 global s
 global e
-s=200000
-e=200050
+s=209000
+e=s+50
 '''
 with open("fincode.csv", 'r') as fl:
 	for a in fl:
@@ -18,9 +18,9 @@ with open("fincode.csv", 'r') as fl:
 		time.sleep(50)
 		
 '''
-for i in range(1,100):
+for i in range(1,50):
 	subprocess.call([sys.executable, './testing.py',str(s),str(e)])
-	time.sleep(50)
+	time.sleep(25)
 	s=s+50
 	e=e+50
 	duplicate()

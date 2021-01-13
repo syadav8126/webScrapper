@@ -92,10 +92,10 @@ def duplicate():
 		f.truncate()
 
 if __name__ == '__main__':
-	#s = int(sys.argv[1])
-	#e = int(sys.argv[2])
-	s=132750
-	e=132800
+	s=119200
+	e=s+51
+	s = int(sys.argv[1])
+	e = int(sys.argv[2])
 	spiderController(s,e)
 	duplicate()
 	sort()
